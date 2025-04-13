@@ -1,0 +1,5 @@
+package com.bagussubagja.face_liveness_detection_randomized_plugin.face_liveness_detection_randomized_plugin_example
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity()
