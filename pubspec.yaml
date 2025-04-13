@@ -1,8 +1,7 @@
 name: face_liveness_detection_randomized_plugin
 description: "A Flutter plugin for liveness detection with randomized challenge response method"
 version: 1.0.0
-homepage: "https://bagussubagja.vercel.app"
-repository: "https://github.com/bagussubagja/flutter-liveness-detection-randomized-plugin"
+repository: "https://github.com/UgahJoy/face_liveness_dectector.git"
 
 environment:
   sdk: ^3.5.3
