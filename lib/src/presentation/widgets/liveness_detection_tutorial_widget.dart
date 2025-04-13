@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:face_liveness_detection_randomized_plugin/index.dart';
 
 class LivenessDetectionTutorialScreen extends StatefulWidget {
