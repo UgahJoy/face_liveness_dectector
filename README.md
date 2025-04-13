@@ -2,7 +2,7 @@
 
 A Flutter plugin for liveness detection with randomized challenge response method with an interaction mechanism between the user and the system in the form of a movement challenge that indicates life is detected on the face. This plugin helps implement secure biometric authentication by detecting real human presence through dynamic facial verification challenges.
 
-[![pub package](https://img.shields.io/pub/v/face_liveness_detection_randomized_plugin.svg)](https://pub.dev/packages/face_liveness_detection_randomized_plugin)
+[![pub package](https://img.shields.io/pub/v/face_liveness_detection_randomized_plugin.svg)]( https://pub.dev/packages/face_liveness_detection_randomized_plugin)
 
 ## Features ✨
 
