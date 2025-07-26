@@ -1,8 +1,12 @@
-## 1.0.7 ✨
+## 1.2.0 ✨
+
+### Features
+-   Updated `google_mlkit_face_detection` to `^0.13.1` for improved accuracy and performance.
+-   Adjusted Android build configuration (compileSdkVersion, targetSdkVersion to 35, Java 11) and iOS deployment target (15.5) in example app for ML Kit compatibility.
 
 ### Bug Fixes
 -   Updated `camera` plugin to `^0.11.2` to resolve `InputImageConverterError` related to unsupported image formats from camera streams.
--   Improved compatibility with `google_mlkit_face_detection: 0.11.0`.
+-   Improved overall compatibility with updated dependencies.
 
 ## 1.0.0 🚀
 
