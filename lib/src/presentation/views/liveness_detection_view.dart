@@ -1,6 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/foundation.dart';
 import 'package:face_liveness_detection_randomized_plugin/index.dart';
 import 'package:face_liveness_detection_randomized_plugin/src/core/constants/liveness_detection_step_constant.dart';
 import 'package:collection/collection.dart';
@@ -246,41 +245,53 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
         () => _onDetectionCompleted(imgToReturn: null));
   }
 
+  // --- START OF MODIFIED _processCameraImage METHOD ---
   Future<void> _processCameraImage(CameraImage cameraImage) async {
-    final WriteBuffer allBytes = WriteBuffer();
-    for (final Plane plane in cameraImage.planes) {
-      allBytes.putUint8List(plane.bytes);
-    }
-    final bytes = allBytes.done().buffer.asUint8List();
-
-    final Size imageSize = Size(
-      cameraImage.width.toDouble(),
-      cameraImage.height.toDouble(),
-    );
-
     final camera = availableCams[_cameraIndex];
-    final imageRotation =
-        InputImageRotationValue.fromRawValue(camera.sensorOrientation);
-    if (imageRotation == null) return;
-
-    final inputImageFormat =
-        InputImageFormatValue.fromRawValue(cameraImage.format.raw);
-    if (inputImageFormat == null) return;
-
-    final inputImageData = InputImageMetadata(
-      size: imageSize,
-      rotation: imageRotation,
-      format: inputImageFormat,
-      bytesPerRow: cameraImage.planes[0].bytesPerRow,
+    final InputImageRotation imageRotation =
+        InputImageRotation.values.firstWhere(
+      (element) => element.rawValue == camera.sensorOrientation,
+      orElse: () => InputImageRotation.rotation0deg,
     );
 
-    final inputImage = InputImage.fromBytes(
-      metadata: inputImageData,
-      bytes: bytes,
-    );
+    InputImage? inputImage;
+
+    if (Platform.isAndroid) {
+      const format = InputImageFormat.yuv420;
+      final planes = cameraImage.planes;
+      inputImage = InputImage.fromBytes(
+        bytes: planes[0].bytes, // Y plane bytes
+        metadata: InputImageMetadata(
+          size:
+              Size(cameraImage.width.toDouble(), cameraImage.height.toDouble()),
+          rotation: imageRotation,
+          format: format,
+          bytesPerRow: planes[0].bytesPerRow, // Bytes per row for the Y plane
+        ),
+      );
+    } else if (Platform.isIOS) {
+      const format = InputImageFormat.bgra8888;
+      inputImage = InputImage.fromBytes(
+        bytes: cameraImage.planes[0].bytes, // Only one plane for BGRA
+        metadata: InputImageMetadata(
+          size:
+              Size(cameraImage.width.toDouble(), cameraImage.height.toDouble()),
+          rotation: imageRotation,
+          format: format,
+          bytesPerRow: cameraImage.planes[0].bytesPerRow,
+        ),
+      );
+    }
+
+    if (inputImage == null) {
+      debugPrint(
+          'Failed to create InputImage from CameraImage. InputImage was null.');
+      return;
+    }
 
     _processImage(inputImage);
   }
+  // --- END OF MODIFIED _processCameraImage METHOD ---
 
   Future<void> _processImage(InputImage inputImage) async {
     if (_isBusy) return;
