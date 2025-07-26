@@ -1,6 +1,6 @@
 name: face_liveness_detection_randomized_plugin
 description: "A Flutter plugin for liveness detection with randomized challenge response method"
-version: 1.0.0
+version: 1.0.7
 repository: "https://github.com/UgahJoy/face_liveness_dectector.git"
 
 environment:
@@ -11,12 +11,12 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
-  google_mlkit_face_detection: 0.11.0
+  google_mlkit_face_detection: ^0.13.1
   easy_debounce: ^2.0.3
-  camera: 0.10.6
+  camera: ^0.11.2
   equatable: ^2.0.5
-  image: ^4.0.15
-  lottie: ^2.4.0
+  image: ^4.5.4
+  lottie: ^3.3.1
   collection: ^1.18.0
   screen_brightness: ^2.1.2
 

@@ -1,6 +1,12 @@
+## 1.0.7 ✨
+
+### Bug Fixes
+-   Updated `camera` plugin to `^0.11.2` to resolve `InputImageConverterError` related to unsupported image formats from camera streams.
+-   Improved compatibility with `google_mlkit_face_detection: 0.11.0`.
+
 ## 1.0.0 🚀
 
-### Introducing Flutter Liveness Detection Randomized Plugin! 
+### Introducing Flutter Liveness Detection Randomized Plugin!
 
 ✨ First Major Release Highlights:
 - 🎯 Smart Liveness Detection System

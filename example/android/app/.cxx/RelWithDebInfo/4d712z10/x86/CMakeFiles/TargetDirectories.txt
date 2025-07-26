@@ -1,0 +1,2 @@
+/Users/ugahjoy/flutter/flutter-liveness-detection-randomized-plugin/example/android/app/.cxx/RelWithDebInfo/4d712z10/x86/CMakeFiles/edit_cache.dir
+/Users/ugahjoy/flutter/flutter-liveness-detection-randomized-plugin/example/android/app/.cxx/RelWithDebInfo/4d712z10/x86/CMakeFiles/rebuild_cache.dir
